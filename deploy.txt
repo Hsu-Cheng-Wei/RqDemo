@@ -1,0 +1,7 @@
+rabbitmqctl add_user root root
+
+rabbitmqctl set_permissions -p / root ".*" ".*" ".*"
+
+rabbitmqctl set_user_tags root administrator
+
+docker run -d --hostname my-rabbit --name rq -p 8080:15672 -p 5671:5671 -p 5672:5672 -p 25672:25672 rabbitmq:3-management
