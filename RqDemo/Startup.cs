@@ -1,60 +1,47 @@
 ﻿using System.Text;
 using RabbitMQ.Client;
+using RqCommon;
 
 namespace RqDemo
 {
     public class Startup
     {
-        private const string ExchangeName = "exchange_demo";
-        private const string RoutingKey = "routingKey_demo";
-        private const string QueueName = "queue_demo";
-        private const string Host = "192.168.1.105";
-        private const int Port = 5672;
-
         public static void Main()
         {
-            //InitMq();
-
-            //channel.ExchangeDeclare(ExchangeName, ExchangeType.Direct, arguments: args);
-            //channel.QueueDeclare(QueueName, false, false, false, null);
-            //channel.QueueBind(QueueName, ExchangeName, RoutingKey, null);
+            InitMq();
             
-            //IModel channel2 = conn.CreateModel();
-            //channel2.QueueBind(QueueName, ExchangeName, RoutingKey, null);
-
-            //QueueDeclareOk response = channel.QueueDeclarePassive(QueueName);
-
             IModel channel = Connect();
             
             byte[] message = Encoding.UTF8.GetBytes("Hello World");
-            channel.BasicPublish(ExchangeName, RoutingKey, null, message);
+            channel.BasicPublish(RqSetting.ExchangeName, RqSetting.RoutingKey, null, message);
             
             channel.Close();
-
-            // uint messageCount = response.MessageCount;
-            // uint consumerCount = response.ConsumerCount;
         }
 
-        public static IModel Connect()
+        private static IModel Connect()
         {
             var factory = new ConnectionFactory()
             {
-                UserName = "guest",
-                Password = "guest",
-                HostName = Host,
-                Port = Port
+                UserName = RqSetting.UserName,
+                Password = RqSetting.Password,
+                HostName = RqSetting.Host,
+                Port = RqSetting.Port
             };
             IConnection conn = factory.CreateConnection("default");
             return conn.CreateModel();
         }
 
-        public static void InitMq()
+        private static void InitMq()
         {
             IModel channel = Connect();
             
-            channel.ExchangeDeclare(ExchangeName, ExchangeType.Direct);
+            channel.ExchangeDeclare(RqSetting.ExchangeName, ExchangeType.Direct);
             
-            channel.QueueDeclare(QueueName, false, false, false, null);
+            channel.QueueDeclare(RqSetting.QueueName, false, false, false, null);
+            
+            channel.QueueBind(RqSetting.QueueName, RqSetting.ExchangeName, RqSetting.RoutingKey);
+            
+            channel.Close();
         }
     }
 }

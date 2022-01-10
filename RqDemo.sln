@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RqSubscribe", "RqSubscribe\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RqCommon", "RqCommon\RqCommon.csproj", "{A9DC7EDB-9AB0-4C54-A910-6837D0529214}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RqSubscribe2", "RqSubscribe2\RqSubscribe2.csproj", "{01F8801D-7776-4F56-93BF-7D2FFF3FF8C5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{A9DC7EDB-9AB0-4C54-A910-6837D0529214}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A9DC7EDB-9AB0-4C54-A910-6837D0529214}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A9DC7EDB-9AB0-4C54-A910-6837D0529214}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01F8801D-7776-4F56-93BF-7D2FFF3FF8C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01F8801D-7776-4F56-93BF-7D2FFF3FF8C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01F8801D-7776-4F56-93BF-7D2FFF3FF8C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01F8801D-7776-4F56-93BF-7D2FFF3FF8C5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
