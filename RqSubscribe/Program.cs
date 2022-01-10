@@ -4,11 +4,6 @@ using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using RqCommon;
 
-const string ExchangeName = "exchange_demo";
-const string RoutingKey = "routingKey_demo";
-const string QueueName = "queue_demo";
-
-
 var factory = new ConnectionFactory()
 {
     UserName = "guest",
@@ -21,9 +16,9 @@ IConnection conn = factory.CreateConnection();
 
 IModel channel = conn.CreateModel();
 
-channel.QueueBind(QueueName, ExchangeName, RoutingKey, null);
-
 var consumer = new EventingBasicConsumer(channel);
+
+channel.BasicConsume(RqSetting.QueueName, autoAck: true, "Tag", false, true, null, consumer);
 
 consumer.Received += (ch, ea) =>
 {
